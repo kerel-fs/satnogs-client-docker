@@ -70,7 +70,10 @@ RUN --mount=type=cache,id=wheels,target=/wheels \
     printf "[libs]\nsystem_freetype = true" > $MPLSETUPCFG && \
     printf "[global]\nextra-index-url=https://www.piwheels.org/simple" > /etc/pip.conf && \
     rm -f /wheels/satnogs* && \
-    pip3 install --upgrade pip setuptools wheel ujson --find-links=/wheels --prefer-binary && \
+    pip3 install \
+        --upgrade \
+        --break-system-packages \
+        pip setuptools wheel ujson --find-links=/wheels --prefer-binary && \
     pip3 wheel -w /wheels --find-links=/wheels --prefer-binary \
     -r ./satnogs-client/requirements.txt \
     ./satnogs-client
@@ -104,7 +107,12 @@ RUN --mount=type=cache,id=debs,target=/debs \
 
 # Install python packages from builder
 RUN --mount=type=cache,id=wheels,target=/wheels \
-    pip3 install --no-cache --find-links=/wheels --no-index satnogs-client
+    pip3 install \
+        --no-cache \
+        --find-links=/wheels \
+        --no-index \
+        --break-system-packages \
+    satnogs-client
 
 ARG SATNOGS_CLIENT_UID=999
 ARG SATNOGS_CLIENT_VARSTATEDIR=/var/lib/satnogs-client
