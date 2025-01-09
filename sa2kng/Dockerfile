@@ -114,7 +114,7 @@ RUN --mount=type=cache,id=wheels,target=/wheels \
         --break-system-packages \
     satnogs-client
 
-ARG SATNOGS_CLIENT_UID=999
+ARG SATNOGS_CLIENT_UID=9999
 ARG SATNOGS_CLIENT_VARSTATEDIR=/var/lib/satnogs-client
 
 # Add unprivileged system user
