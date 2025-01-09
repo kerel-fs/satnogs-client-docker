@@ -24,6 +24,9 @@ libdpdk-dev
 libfreetype6-dev
 libgmp-dev
 libgps-dev
+libgsl-dev
+libhamlib++-dev
+libhamlib-dev
 libhdf5-103
 libhdf5-dev
 libitpp-dev
