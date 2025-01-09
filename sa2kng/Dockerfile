@@ -23,6 +23,8 @@ ARG CLIENT_VER
 
 RUN git clone --depth 1 --branch "$GRSATNOGS_BRANCH" "$GRSATNOGS_URL"
 RUN git clone --depth 1 --branch "$FLOWGRAPHS_BRANCH" "$FLOWGRAPHS_URL"
+RUN cd gr-satnogs && \
+    git submodule update --init --recursive
 RUN git clone --depth 1 --branch "$CLIENT_BRANCH" "$CLIENT_URL"
 
 ARG CMAKE_BUILD_PARALLEL_LEVEL
