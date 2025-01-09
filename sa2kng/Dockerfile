@@ -12,14 +12,14 @@ RUN apt -y update && \
     xargs -a packages.builder apt install --no-install-recommends -qy
 
 ARG GRSATNOGS_URL=https://gitlab.com/librespacefoundation/satnogs/gr-satnogs.git
-ARG GRSATNOGS_BRANCH=v2.3.5.0
-ARG GRSATNOGS_VER=2.3.5.0-1
+ARG GRSATNOGS_BRANCH
+ARG GRSATNOGS_VER
 ARG FLOWGRAPHS_URL=https://gitlab.com/librespacefoundation/satnogs/satnogs-flowgraphs.git
-ARG FLOWGRAPHS_BRANCH=1.5
-ARG FLOWGRAPHS_VER=1.5-1
+ARG FLOWGRAPHS_BRANCH
+ARG FLOWGRAPHS_VER
 ARG CLIENT_URL=https://gitlab.com/librespacefoundation/satnogs/satnogs-client.git
-ARG CLIENT_BRANCH=1.9.2
-ARG CLIENT_VER=1.9.2
+ARG CLIENT_BRANCH
+ARG CLIENT_VER
 
 RUN git clone --depth 1 --branch "$GRSATNOGS_BRANCH" "$GRSATNOGS_URL"
 RUN git clone --depth 1 --branch "$FLOWGRAPHS_BRANCH" "$FLOWGRAPHS_URL"
