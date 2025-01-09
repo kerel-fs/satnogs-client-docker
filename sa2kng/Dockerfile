@@ -17,16 +17,12 @@ ARG GRSATNOGS_VER=2.3.5.0-1
 ARG FLOWGRAPHS_URL=https://gitlab.com/librespacefoundation/satnogs/satnogs-flowgraphs.git
 ARG FLOWGRAPHS_BRANCH=1.5
 ARG FLOWGRAPHS_VER=1.5-1
-ARG GRSOAPY_URL=https://gitlab.com/librespacefoundation/gr-soapy.git
-ARG GRSOAPY_BRANCH=v2.1.3.1
-ARG GRSOAPY_VER=2.1.3.1-1
 ARG CLIENT_URL=https://gitlab.com/librespacefoundation/satnogs/satnogs-client.git
 ARG CLIENT_BRANCH=1.9.2
 ARG CLIENT_VER=1.9.2
 
 RUN git clone --depth 1 --branch "$GRSATNOGS_BRANCH" "$GRSATNOGS_URL"
 RUN git clone --depth 1 --branch "$FLOWGRAPHS_BRANCH" "$FLOWGRAPHS_URL"
-RUN git clone --depth 1 --branch "$GRSOAPY_BRANCH" "$GRSOAPY_URL"
 RUN git clone --depth 1 --branch "$CLIENT_BRANCH" "$CLIENT_URL"
 
 ARG CMAKE_BUILD_PARALLEL_LEVEL
@@ -41,11 +37,6 @@ RUN if [ -n "$RTLSDR_URL" ]; then \
         DEB_BUILD_OPTIONS=noautodbgsym dpkg-buildpackage -b -us -uc && \
         dpkg -i ../rtl-sdr_*.deb ../librtlsdr0_*.deb ;\
     fi
-
-RUN cd gr-soapy && \
-    dch -m -b --distribution unstable -v $GRSOAPY_VER Upstream master && \
-    DEB_BUILD_OPTIONS=noautodbgsym dpkg-buildpackage -b -us -uc && \
-    dpkg -i ../gr-soapy_*.deb ../libgnuradio-soapy_*.deb
 
 RUN cd gr-satnogs && \
     dch -m -b --distribution unstable -v $GRSATNOGS_VER Upstream master && \
